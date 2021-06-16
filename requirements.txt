@@ -7,3 +7,4 @@ itsdangerous==2.0.1
 Werkzeug==2.0.1
 pandas==1.2.4
 nltk==3.5
+scikit-learn==0.24.1
