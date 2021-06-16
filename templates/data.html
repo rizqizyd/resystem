@@ -1,0 +1,35 @@
+{% include "layout/header.html" %}
+
+<body>
+  <div class="container content">
+    <div class="text-center mt-3 mb-3">
+      <h3 class="text-center">Data Buku Gramedia</h3>
+    </div>
+    <div class="text-center mt-5">
+      <form method="post" class="row g-3" style="justify-content: center">
+        <div class="col-auto">
+          <label class="mt-5 mb-1">Cari Data Buku</label>
+          <input
+            type="cari"
+            class="form-control"
+            name="cari"
+            placeholder="Buku, genre atau penulis"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Cari</button>
+        </div>
+      </form>
+      <div class="row atas">
+        <div class="mt-3">
+          {% for table in tables %}
+          <h5 class="text-center"></h5>
+          {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+        </div>
+        <p>Total Buku: <strong>5430</strong></p>
+      </div>
+    </div>
+  </div>
+</body>
+
+{% include "layout/footer.html" %}
