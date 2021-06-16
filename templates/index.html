@@ -1,0 +1,37 @@
+{% include "layout/header.html" %}
+
+<body>
+  <div class="container content">
+    <!-- Mentoring -->
+    <div class="mentoring row">
+      <div class="gambar col-lg-6 col-sm-12">
+        <img
+          class="pertama"
+          src="../static/img/system2.png"
+          height="400"
+          width="545"
+        />
+      </div>
+      <div class="pertama col-lg-6 col-sm-12">
+        <h3 class="mt-5">Sistem Rekomendasi</h3>
+        <p>
+          Sistem rekomendasi merupakan suatu aplikasi untuk menyediakan dan 
+          merekomendasikan suatu item dalam membuat suatu keputusan yang diinginkan oleh pengguna.
+          Pada sistem ini, website menyediakan sistem untuk merekomendasikan buku kepada pengguna.
+        </p>
+        <p>
+          Dengan menggunakan metode Content Based Filtering berbasis TF-IDF Vectorizer dan Cosine Similarity,
+          sistem akan memberikan rekomendasi buku yang memiliki kemiripan dengan buku yang disukai.
+        </p>
+        <a href="/rekomendasi" class="tombol btn btn-primary center mt-3 col-sm-12"
+          >Rekomendasi Buku</a
+        >
+        <!-- <a href="#about" class="tombol btn btn-warning center mt-3 col-sm-12"
+          >Tentang Mentoring</a
+        > -->
+      </div>
+    </div>
+  </div>
+</body>
+
+{% include "layout/footer.html" %}
