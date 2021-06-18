@@ -13,33 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import warnings; warnings.simplefilter('ignore')
 
 # Read Data
-books = pd.read_csv('data_5000.csv', sep='\t')
-
-books = books.drop_duplicates(subset=['title'])
-books = books.drop(columns=['Unnamed: 0'])
-
-books['description'] = books['description'].apply(lambda x:x.replace("\n", "").replace(",", "").replace(".", ""))
-books['description'] = books['description'].apply(lambda x:x.replace("—", "").replace("?", "").replace(":", ""))
-
-books['author'] = books['author'].fillna('')
-books['authors'] = books['author'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
-books['authors'] = books['authors'].apply(lambda x: [x,x,x])
-
-books['title_lower'] = books['title'].fillna('')
-books['title_lower'] = books['title_lower'].apply(lambda row: row.split(' '))
-books['title_lower'] = books['title_lower'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
-
-books['genre'] = books['genre'].fillna('')
-# books['genre'] = books['genre'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
-books['genre'] = books['genre'].str.lower()
-books['genre'] = books['genre'].apply(lambda row: row.split('-'))
-
-books['description'] = books['description'].fillna('')
-books['description'] = books['description'].apply(lambda row: row.split(' '))
-books['description'] = books['description'].apply(lambda x: [str.lower(i.replace(" ", "")) for i in x])
-
-books['soup'] = books['genre'] + books['authors'] + books['title_lower'] + books['description']
-books['soup'] = books['soup'].apply(lambda x: ' '.join(x))
+books = pd.read_csv('data_soup.csv', sep='\t')
 
 # Memeriksa daftar kata di stopwords bahasa Indonesia
 indo = stopwords.words('indonesian')
@@ -99,9 +73,10 @@ def get_recommendations(title, jumlah=10, cosine_sim=cosine_sim):
         # recommendation.at[count, 'Book Idx'] = movie_indices[count]
         recommendation.at[count+1, 'Judul'] = titles.iloc[movie_indices[count]].title()
         recommendation.at[count+1, 'Penulis'] = authors.iloc[movie_indices[count]].title()
-        gen = genres.iloc[movie_indices[count]]
-        genres2 = ' '.join(map(str, gen))
-        recommendation.at[count+1, 'Genre'] = genres2.title()
+        recommendation.at[count+1, 'Genre'] = genres.iloc[movie_indices[count]].title()
+        # gen = genres.iloc[movie_indices[count]]
+        # genres2 = ' '.join(map(str, gen))
+        # recommendation.at[count+1, 'Genre'] = gen.title()
         # recommendation.at[count, 'Score'] = sim_scores[count][1]
         count += 1
     # Return the top 10 most similar movies
