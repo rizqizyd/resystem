@@ -100,6 +100,16 @@ tr:hover {
   color: rgb(0, 187, 16);
 }
 
+@media only screen and (max-width: 500px) {
+  table {
+    display: block;
+    /* max-width: fit-content; */
+    /* margin: 0 auto; */
+    overflow-x: auto;
+    /* white-space: nowrap; */
+  }
+}
+
 /* Input Form */
 .input-field {
   position: relative;

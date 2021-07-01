@@ -22,9 +22,10 @@
       </form>
       <div class="row atas">
         <div class="mt-3">
-          {% for table in tables %}
-          <h5 class="text-center"></h5>
-          {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+          <table>
+            {% for table in tables %}
+            {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+          </table>
         </div>
         <p>Total Buku: <strong>5430</strong></p>
       </div>

@@ -13,7 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import warnings; warnings.simplefilter('ignore')
 
 # Read Data
-books = pd.read_csv('data_soup(gambar).csv', sep='\t')
+books = pd.read_csv('data_soup(fix).csv', sep='\t')
 
 # Memeriksa daftar kata di stopwords bahasa Indonesia
 indo = stopwords.words('indonesian')

@@ -67,7 +67,9 @@
         <div class="mt-3">
           {% for table in tables %}
           <h5 class="text-center mb-3">Rekomendasi Buku Serupa</h5>
-          {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+          <table>
+            {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+          </table>
         </div>
       </div>
     </div>
