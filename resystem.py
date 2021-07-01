@@ -13,7 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import warnings; warnings.simplefilter('ignore')
 
 # Read Data
-books = pd.read_csv('data_soup.csv', sep='\t')
+books = pd.read_csv('data_soup(gambar).csv', sep='\t')
 
 # Memeriksa daftar kata di stopwords bahasa Indonesia
 indo = stopwords.words('indonesian')
@@ -41,6 +41,7 @@ titles = books['title']
 titles = titles.str.lower()
 authors = books['author']
 genres = books['genre']
+covers = books['image'].apply(lambda x: '<img src="{}" width="100px"/>'.format(x) if x else '')
 # for genre in genres_list.values():
 #     genres = genres.title()
 # genres = ' '.join(map(str,books['genre']))
@@ -55,7 +56,7 @@ def get_recommendations(title, jumlah=10, cosine_sim=cosine_sim):
     # title = title.lower()
     jumlah = int(jumlah) + 1
 
-    recommendation = pd.DataFrame(columns = ['Judul', 'Penulis', 'Genre'])
+    recommendation = pd.DataFrame(columns = ['Judul', 'Penulis', 'Genre', 'Cover'])
     count = 0
     
     # Get the index of the movie that matches the title
@@ -74,6 +75,7 @@ def get_recommendations(title, jumlah=10, cosine_sim=cosine_sim):
         recommendation.at[count+1, 'Judul'] = titles.iloc[movie_indices[count]].title()
         recommendation.at[count+1, 'Penulis'] = authors.iloc[movie_indices[count]].title()
         recommendation.at[count+1, 'Genre'] = genres.iloc[movie_indices[count]].title()
+        recommendation.at[count+1, 'Cover'] = covers.iloc[movie_indices[count]]
         # gen = genres.iloc[movie_indices[count]]
         # genres2 = ' '.join(map(str, gen))
         # recommendation.at[count+1, 'Genre'] = gen.title()
