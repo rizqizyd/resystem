@@ -26,7 +26,7 @@ def recommendation():
     elif jumlah == '':
         jumlah = 10
         
-    df = pd.read_csv("data_soup.csv", sep='\t', error_bad_lines=False)
+    df = pd.read_csv("data_soup(fix).csv", sep='\t', error_bad_lines=False)
     x = df.title.values
     search_book = list(map(lambda x: x.lower(), x))
     gagal = 'Buku tidak tersedia atau penulisan judul buku tidak sesuai, silahkan cari ketersediaan buku pada halaman'
