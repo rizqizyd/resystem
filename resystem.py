@@ -40,6 +40,37 @@ books = books.reset_index()
 titles = books['title']
 titles = titles.str.lower()
 authors = books['author']
+
+# ubah string ke list
+books['genre'] = books['genre'].apply(lambda x:x.replace("'", "").replace("[", "").replace("]", ""))
+books['genre'] = books.genre.apply(lambda x: x.split(', '))
+
+# list genre ke dua
+gen = []
+for genre in books['genre']:
+    gen.append(genre[1])
+
+# list title
+tit = []
+for title in books['title']:
+    tit.append(title)
+
+# hapus genre kedua jika sama dengan title
+x = 0
+for i in books['genre']:
+    if i[1] == tit[x]:
+        books['genre'][x] = books['genre'][x][0]
+    x = x + 1
+
+# set buku yang memiliki 1 genre menjadi list
+y = 0
+for i in books['genre']:
+    if isinstance(i, str):
+        books['genre'][y] = i.split("delimiter")
+    y = y + 1
+
+books['genre'] = [', '.join(map(str, l)) for l in books['genre']]
+
 genres = books['genre']
 covers = books['image'].apply(lambda x: '<img src="{}" width="100px"/>'.format(x) if x else '')
 # for genre in genres_list.values():
