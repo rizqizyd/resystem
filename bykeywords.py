@@ -7,8 +7,8 @@ from nltk.corpus import stopwords
 nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 # import Sastrawi package  
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory  
-import swifter   
+# from Sastrawi.Stemmer.StemmerFactory import StemmerFactory  
+# import swifter   
 # Libraries for Recommendation System
 from sklearn.feature_extraction.text import TfidfVectorizer
 # Import linear_kernel
