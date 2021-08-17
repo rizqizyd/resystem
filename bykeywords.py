@@ -7,8 +7,8 @@ from nltk.corpus import stopwords
 nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 # import Sastrawi package  
-# from Sastrawi.Stemmer.StemmerFactory import StemmerFactory  
-# import swifter   
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory  
+import swifter   
 # Libraries for Recommendation System
 from sklearn.feature_extraction.text import TfidfVectorizer
 # Import linear_kernel
@@ -58,26 +58,26 @@ def get_recommendations(judul, jumlah):
 
     # Stemming    
     # create stemmer  
-    # factory = StemmerFactory()  
-    # stemmer = factory.create_stemmer()  
+    factory = StemmerFactory()  
+    stemmer = factory.create_stemmer()  
 
-    # term_dict = {}  
+    term_dict = {}  
     
-    # for document in judul:  
-    #     for term in document:  
-    #         if term not in term_dict:  
-    #             term_dict[term] = ' '  
+    for document in judul:  
+        for term in document:  
+            if term not in term_dict:  
+                term_dict[term] = ' '  
 
-    # # stemmed
-    # for term in term_dict:  
-    #     term_dict[term] = stemmer.stem(term)  
-    #     print(term,":" ,term_dict[term])  
+    # stemmed
+    for term in term_dict:  
+        term_dict[term] = stemmer.stem(term)  
+        print(term,":" ,term_dict[term])  
 
-    # # apply stemmed term to dataframe  
-    # def get_stemmed_term(document):  
-    #     return [term_dict[term] for term in document]  
+    # apply stemmed term to dataframe  
+    def get_stemmed_term(document):  
+        return [term_dict[term] for term in document]  
     
-    # judul = judul.swifter.apply(get_stemmed_term)
+    judul = judul.swifter.apply(get_stemmed_term)
 
     # Ambil keywords
     judul = judul.to_string()
