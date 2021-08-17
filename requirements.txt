@@ -9,3 +9,4 @@ pandas==1.2.4
 nltk==3.5
 scikit-learn==0.24.1
 Sastrawi==1.0.1
+swifter==1.0.9
