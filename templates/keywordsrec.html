@@ -1,0 +1,67 @@
+{% include "layout/header.html" %}
+<body>
+  <div class="container content">
+    <div class="text-center mt-3 mb-3">
+      <h3>Sistem Rekomendasi Buku Berdasarkan Keywords</h3>
+      <i
+        >"Aku rela dipenjara, asalkan bersama buku. Karena dengan buku, aku
+        bebas." - Mohammad Hatta -</i
+      >
+    </div>
+    
+    <div class="row atas">
+      <div class="col-sm">
+        <img class="book" src="../static/img/book.png" alt="book" />
+      </div>
+      <div class="col-sm">
+        <form
+          class="p-3"
+          action="/keywords"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="input-field" style="margin-bottom: 30px">
+            <input type="text" id="book" name="book" required />
+            <label for="book">Masukkan Kata Kunci</label>
+          </div>
+          <div class="input-field" style="margin-bottom: 30px">
+            <input type="number" id="jumlah" name="jumlah" type="number" required min="1" max="25"/>
+            <label for="jumlah">Jumlah Rekomendasi Buku</label>
+          </div>
+          <p class="contoh">Contoh: 'The Lean Startup' dan '10'</p>
+          <input
+            type="submit"
+            class="btn btn-primary"
+            value="Cari Rekomendasi"
+          />
+        </form>
+      </div>
+      <div class="text-center red">
+        {% if salah %}
+        <p>{{salah}} <a class="link_data" href="/rekomendasi">Rekomendasi Buku</a></p>
+        {% endif %}
+      </div>
+      <div class="text-center red">
+        {% if warning %}
+        <p>{{warning}}</p>
+        {% endif %}
+      </div>
+      <div class="text-center green">
+        {% if buku_dicari %}
+        <p>Kata Kunci: "{{buku_dicari.title()}}"</p>
+        {% endif %}
+      </div>
+
+      <div class="col-sm">
+        <div class="mt-3">
+          {% for table in tables %}
+          <h5 class="text-center mb-3">Rekomendasi Buku Serupa</h5>
+          <table>
+            {{titles[loop.index]}} {{ table|safe }} {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% include "layout/footer.html" %}
