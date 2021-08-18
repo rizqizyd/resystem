@@ -8,7 +8,6 @@ nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 # import Sastrawi package  
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory  
-import swifter   
 # Libraries for Recommendation System
 from sklearn.feature_extraction.text import TfidfVectorizer
 # Import linear_kernel
@@ -77,7 +76,7 @@ def get_recommendations(judul, jumlah):
     def get_stemmed_term(document):  
         return [term_dict[term] for term in document]  
     
-    judul = judul.swifter.apply(get_stemmed_term)
+    judul = judul.apply(get_stemmed_term)
 
     # Ambil keywords
     judul = judul.to_string()
