@@ -25,14 +25,10 @@ def get_recommendations(judul, jumlah):
     judul = judul.apply(lambda x: x.translate({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+—"})) 
     judul = judul.apply(lambda x: x.strip())  
     judul = judul.apply(lambda x: re.sub('\s+',' ', x))  
-    judul = judul.apply(lambda x: re.sub(r"\b[a-zA-Z]\b", "", x)) 
+    judul = judul.apply(lambda x: re.sub(r"\b[a-zA-Z]\b", "", x))
 
-    # create series form a list
-    judul = pd.Series(judul)
-    print(judul)
-
-    judul = judul.apply(lambda x: word_tokenize(x)) 
-    judul
+    # tokenize judul
+    judul = judul.apply(lambda x: word_tokenize(x))
 
     # Filtering
     # memeriksa daftar kata di stopwords  
@@ -70,7 +66,6 @@ def get_recommendations(judul, jumlah):
     # stemmed
     for term in term_dict:  
         term_dict[term] = stemmer.stem(term)  
-        print(term,":" ,term_dict[term])  
 
     # apply stemmed term to dataframe  
     def get_stemmed_term(document):  
@@ -93,19 +88,6 @@ def get_recommendations(judul, jumlah):
     frames = [books, new]
     result = pd.concat(frames)
     books = result.copy()
-
-    # memeriksa daftar kata di stopwords  
-    indo = stopwords.words('indonesian')  
-    eng = stopwords.words('english')  
-    
-    # get stopwords from NLTK stopword  
-    list_stopwords = stopwords.words('indonesian')  
-    # list stopwords bahasa indonesia (758 kata)
-    list_stopwords = indo  
-    # menambah stopwords bahasa inggris 
-    list_stopwords.extend(eng)
-
-    books['soup'] = books['soup'].fillna('')
 
     # TF-IDF Vectorizer
     tfidf = TfidfVectorizer(stop_words=list_stopwords)
