@@ -81,7 +81,10 @@ def get_recommendations(judul, jumlah):
     # Read Data
     books = pd.read_csv('data_soup.csv', sep='\t')
     gnr = "['keywords', {judul}]"
-    data = [{'Unnamed: 0': 5143, 'Unnamed: 0.1':5154, 'title': judul, 'author': judul, 'genre': gnr, 'description': judul, 'image': judul, 'site': judul, 'title_list': judul, 'author_list': judul, 'genre_list': judul, 'description_list': judul, 'soup': judul}]
+    data = [{'Unnamed: 0': 5143, 'title': judul, 'author': judul, 'genre': gnr, 'description': judul, 'image': judul, 'site': judul, 'title_list': judul, 'author_list': judul, 'genre_list': judul, 'description_list': judul, 'soup': judul}]
+
+    # dropping ALL duplicate values
+    books.drop_duplicates(subset ="title", inplace = True)
 
     # Creates DataFrame
     new = pd.DataFrame(data)  

@@ -2,6 +2,8 @@ import pandas as pd
 
 def cari_buku(cari):
     df = pd.read_csv("data_soup.csv", sep='\t', error_bad_lines=False)
+    # dropping ALL duplicate values
+    df.drop_duplicates(subset ="title", inplace = True)
     df = df[['title', 'author', 'genre', 'image']]
     df = df.rename({'title': 'Judul', 'author': 'Penulis', 'genre': 'Genre','site' :'Situs', 'image': 'Cover'}, axis=1)
     df['Cover'] = df['Cover'].apply(lambda x: '<img src="{}" width="100px"/>'.format(x) if x else '')

@@ -12,6 +12,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # Read Data
 books = pd.read_csv('data_soup.csv', sep='\t')
 
+# dropping ALL duplicate values
+books.drop_duplicates(subset ="title", inplace = True)
+
 # memeriksa daftar kata di stopwords  
 indo = stopwords.words('indonesian')  
 eng = stopwords.words('english')  
