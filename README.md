@@ -16,3 +16,5 @@ Penjelasan file lain
 - data_soup.csv merupakan database yang digunakan untuk menyimpan data-data buku
 - Procfile digunakan supaya dapat menjalankan website menggunakan heroku
 - requirements.txt digunakan untuk menginstall library yang digunakan ketika website dijalankan pada heroku
+
+Sistem dapat dijalankan dengan mengetikkan "python app.py" pada command line
